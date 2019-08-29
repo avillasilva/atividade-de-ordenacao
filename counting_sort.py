@@ -57,50 +57,65 @@ def counting_sort(input):
 
     # O valor maximo e o valor minimo sao necessarios para que o algoritmo
     # funcione para entrada possua numeros negativos.
-    min = int(fabs(find_min(input))) + 1
-    max = int(find_max(input)) + min
+    min = find_min(input)
+    max = find_max(input)
+    limit = max - min + 1
 
     # Inicializa o vetor auxiliar e o vetor de saida com zeros.
-    # O vetor aux precisa ter max + 1 elementos devido aos deslocamentos na linha 29
-    # e as somas na linha 34.
-    # Ex: max = 19, min = 0 -> aux[max + min] -> aux[19 + 0] 
-    aux = [min for i in range(max + 1)]
+    print(limit)
+    aux = [0 for i in range(limit)]
     output = [0 for i in range(len(input))] 
 
     # Contagem dos elementos.
     for i in input:
-        aux[i + min] += 1
+        aux[i - min] += 1
 
     # aux[i] = aux[0] + ... + aux[i]
     for i in range(1, len(aux)):
-        aux[i] += aux[i - 1] - min
+        aux[i] += aux[i - 1]
 
     # Organiza os elementos nas posicoes ordenadas subtraindo os deslocamentos.
     for i in range(len(input)):
-        output[aux[input[i] + min] - min - 1] = input[i]
-        aux[input[i] + min] -= 1
+        output[aux[input[i] - min] - 1] = input[i]
+        aux[input[i] - min] -= 1
     
     for i in range(0, len(input)):
         input[i] = output[i]
 
     return input
 
-print("Counting Sort")
+def ord(file_in, file_out):
+    fin = open(file_in, 'r')
+    fout = open(file_out, 'w')
+    input = []
+    lines = fin.readlines()
+    
+    for line in lines:
+        input.append(int(line))
 
-print("Input: ", end = '')
+    input = counting_sort(input)
 
-input = [6, 0, 2, 0, 1, 3, 4, 6, 1, 3, 2]
+    for i in input:
+        fout.write(str(i) + '\n')
 
-for i in input:
-    print(i, end=' ')
+    fin.close()
+    fout.close()
 
-print()
+# input = [-5, -10, 5, 3, 20, 0]
+# input = counting_sort(input)
 
-output = counting_sort(input)
+# for i in input:
+#     print(i)
 
-print("Output: ", end = '')
-
-for i in output:
-    print(i, end = ' ')
-
-print()
+ord("instancias-num/num.1000.1.in", "counting_sort/1000-1.txt")
+ord("instancias-num/num.1000.2.in", "counting_sort/1000-2.txt")
+ord("instancias-num/num.1000.3.in", "counting_sort/1000-3.txt")
+ord("instancias-num/num.1000.4.in", "counting_sort/1000-4.txt")
+ord("instancias-num/num.10000.1.in", "counting_sort/10000-1.txt")
+ord("instancias-num/num.10000.2.in", "counting_sort/10000-2.txt")
+ord("instancias-num/num.10000.3.in", "counting_sort/10000-3.txt")
+ord("instancias-num/num.10000.4.in", "counting_sort/10000-4.txt")
+ord("instancias-num/num.100000.1.in", "counting_sort/100000-1.txt")
+ord("instancias-num/num.100000.2.in", "counting_sort/100000-2.txt")
+ord("instancias-num/num.100000.3.in", "counting_sort/100000-3.txt")
+ord("instancias-num/num.100000.4.in", "counting_sort/100000-4.txt")

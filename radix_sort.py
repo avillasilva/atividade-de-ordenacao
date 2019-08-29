@@ -1,20 +1,13 @@
 from math import fabs
 from math import pow
 
-def find_max(input):
-    """
-    Funcao auxiliar para encontrar o maior valor de uma lista.
+def digit_at(number, digit):
+    if number > 0:
+        return (number /  (10 ** digit)) % 10
+    else:
+        return (number / (10 ** digit)) % -10
 
-    Parametros
-    ----------
-    input : array
-        A lista de numeros para se procurar.
-    
-    Retorna
-    -------
-    max : max value
-        O maior valor da lista.
-    """
+def find_max(input):
     max = 0
     for i in input:
         if i > max:
@@ -22,23 +15,24 @@ def find_max(input):
     return max
 
 def find_min(input):
-    """
-    Funcao auxiliar para encontrar o menor valor de uma lista.
-
-    Parametros
-    ----------
-    input : array
-        A lista de numeros para se procurar.
-    
-    Retorna
-    -------
-    min: min value
-        O menor valor da lista.
-    """
     min = 0
     for i in input:
         if i < min:
             min = i
+    return min
+
+def find_maxd(input, digit):
+    max = digit_at(input[0], digit)
+    for i in input:
+        if digit_at(i, digit) > max:
+            max = digit_at(i, digit)  
+    return max
+
+def find_mind(input, digit):
+    min = digit_at(input[0], digit)
+    for i in input:
+        if digit_at(i, digit) < min:
+            min = digit_at(i, digit)  
     return min
 
 def counting_sort(input, digit):
@@ -61,13 +55,9 @@ def counting_sort(input, digit):
 
     # O valor maximo e o valor minimo sao necessarios para que o algoritmo
     # funcione para entrada possua numeros negativos.
-    min = int(fabs(find_min(input))) + 1
-    max = int(find_max(input)) + min
+    min = int(fabs(find_mind(input, digit))) + 1
+    max = int(find_maxd(input, digit)) + min
 
-    # Inicializa o vetor auxiliar e o vetor de saida com zeros.
-    # O vetor aux precisa ter max + 1 elementos devido aos deslocamentos na linha 29
-    # e as somas na linha 34.
-    # Ex: max = 19, min = 0 -> aux[max + min] -> aux[19 + 0] 
     aux = [min for i in range(max + 1)]
     output = [0 for i in range(len(input))] 
 
@@ -87,12 +77,6 @@ def counting_sort(input, digit):
         aux[index + min] -= 1
     
     return output
-
-def digit_at(number, digit):
-    if number > 0:
-        return (number /  (10 ** digit)) % 10
-    else:
-        return (number / (10 ** digit)) % -10
 
 def radix_sort(input):
     """
@@ -119,17 +103,38 @@ def radix_sort(input):
     
     return input
 
-input = [329, 457, 657, 839, 436, 720, 355]
+def ord(file_in, file_out):
+    fin = open(file_in, 'r')
+    fout = open(file_out, 'w')
+    input = []
+    lines = fin.readlines()
+    
+    for line in lines:
+        input.append(int(line))
 
-print("Input: ", end=' ')
-for i in input:
-    print(i, end = ' ')
+    input = radix_sort(input)
 
-print()
+    for i in input:
+        fout.write(str(i) + '\n')
 
-input = radix_sort(input)
+    fin.close()
+    fout.close()
 
-print("Output: ", end=' ')
-for i in input:
-    print(i, end = ' ')
-print()
+# input = [-10, 0, 1000, 8, 5, -20]
+# input = radix_sort(input)
+
+# for i in input:
+#     print(i)
+
+ord("instancias-num/num.1000.1.in", "radix_sort/1000-1.txt")
+ord("instancias-num/num.1000.2.in", "radix_sort/1000-2.txt")
+ord("instancias-num/num.1000.3.in", "radix_sort/1000-3.txt")
+ord("instancias-num/num.1000.4.in", "radix_sort/1000-4.txt")
+ord("instancias-num/num.10000.1.in", "radix_sort/10000-1.txt")
+ord("instancias-num/num.10000.2.in", "radix_sort/10000-2.txt")
+ord("instancias-num/num.10000.3.in", "radix_sort/10000-3.txt")
+ord("instancias-num/num.10000.4.in", "radix_sort/10000-4.txt")
+ord("instancias-num/num.100000.1.in", "radix_sort/100000-1.txt")
+ord("instancias-num/num.100000.2.in", "radix_sort/100000-2.txt")
+ord("instancias-num/num.100000.3.in", "radix_sort/100000-3.txt")
+ord("instancias-num/num.100000.4.in", "radix_sort/100000-4.txt")
