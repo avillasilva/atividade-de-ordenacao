@@ -62,7 +62,6 @@ def counting_sort(input):
     limit = max - min + 1
 
     # Inicializa o vetor auxiliar e o vetor de saida com zeros.
-    print(limit)
     aux = [0 for i in range(limit)]
     output = [0 for i in range(len(input))] 
 
@@ -85,6 +84,9 @@ def counting_sort(input):
     return input
 
 def ord(file_in, file_out):
+    """
+    Funcao auxiliar para ordenar os casos de testes.
+    """
     fin = open(file_in, 'r')
     fout = open(file_out, 'w')
     input = []
@@ -100,12 +102,6 @@ def ord(file_in, file_out):
 
     fin.close()
     fout.close()
-
-# input = [-5, -10, 5, 3, 20, 0]
-# input = counting_sort(input)
-
-# for i in input:
-#     print(i)
 
 ord("instancias-num/num.1000.1.in", "counting_sort/1000-1.txt")
 ord("instancias-num/num.1000.2.in", "counting_sort/1000-2.txt")
