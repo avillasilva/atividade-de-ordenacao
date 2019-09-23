@@ -1,8 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-/**
- * A utilitarian function to print the elements of an array.
- * */
+// A utilitarian function to print the elements of an array.
 void printArray(int arr[], int n)
 {
     int i;
@@ -12,9 +11,7 @@ void printArray(int arr[], int n)
     printf("\n");
 }
 
-/**
- * The merge function to merge the halves.
- * */
+// The merge function to merge the halves.
 void merge(int arr[], int left, int middle, int right)
 {
     int i, j, k;
@@ -60,6 +57,7 @@ void merge(int arr[], int left, int middle, int right)
     }
 }
 
+// The merge sort algorithm.
 void mergeSort(int arr[], int left, int right)
 {
     if (right > left)
@@ -71,11 +69,57 @@ void mergeSort(int arr[], int left, int right)
     }
 }
 
+void applyMergeSort(char inPath[], char outPath[])
+{
+    FILE *ip, *op;
+
+    if((ip = fopen(inPath, "r")) == NULL)
+    {
+        printf("Cannot open input file: %s\n", inPath);
+        exit(0);
+    }       
+
+    if((op = fopen(outPath, "w")) == NULL)
+    {
+        printf("Cannot open output file: %s\n", outPath);
+        exit(0);
+    }
+
+    int inputArrayLenght;
+    fscanf(ip, "%d", &inputArrayLenght);
+
+    int arr[inputArrayLenght], i;
+
+    for(i = 0; i < inputArrayLenght; i++)
+    {
+        fscanf(ip, "%d", &arr[i]);
+    }
+
+    mergeSort(arr, 0, inputArrayLenght - 1);
+
+    for(i = 0; i < inputArrayLenght; i++)
+    {
+        fprintf(op, "%d\n", arr[i]);
+    }
+
+    fclose(ip);
+    fclose(op);
+}
+
 int main()
 {
-    int i, j, k, arr[] = {12, 11, 13, 5, 6, 7};
+    applyMergeSort("instancias-num/num.1000.1.in", "merge_sort/num.1000.1.out");
+    applyMergeSort("instancias-num/num.1000.2.in", "merge_sort/num.1000.2.out");
+    applyMergeSort("instancias-num/num.1000.3.in", "merge_sort/num.1000.3.out");
+    applyMergeSort("instancias-num/num.1000.4.in", "merge_sort/num.1000.4.out");
+    applyMergeSort("instancias-num/num.10000.1.in", "merge_sort/num.10000.1.out");
+    applyMergeSort("instancias-num/num.10000.2.in", "merge_sort/num.10000.2.out");
+    applyMergeSort("instancias-num/num.10000.3.in", "merge_sort/num.10000.3.out");
+    applyMergeSort("instancias-num/num.10000.4.in", "merge_sort/num.10000.4.out");
+    applyMergeSort("instancias-num/num.100000.1.in", "merge_sort/num.100000.1.out");
+    applyMergeSort("instancias-num/num.100000.2.in", "merge_sort/num.100000.2.out");
+    applyMergeSort("instancias-num/num.100000.3.in", "merge_sort/num.100000.3.out");
+    applyMergeSort("instancias-num/num.100000.4.in", "merge_sort/num.100000.4.out");
 
-    mergeSort(arr, 0, 5);
-
-    printArray(arr, 6);
+    return 0;
 }
