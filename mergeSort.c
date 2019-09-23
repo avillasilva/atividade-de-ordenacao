@@ -69,6 +69,10 @@ void mergeSort(int arr[], int left, int right)
     }
 }
 
+// A utility function for applying the quick sort algorithm
+// in a specified input file.
+// inPath -> Path to the input file.
+// outPath -> path to output file.
 void applyMergeSort(char inPath[], char outPath[])
 {
     FILE *ip, *op;
@@ -106,20 +110,9 @@ void applyMergeSort(char inPath[], char outPath[])
     fclose(op);
 }
 
-int main()
+int main(int argc, int *argv[])
 {
-    applyMergeSort("instancias-num/num.1000.1.in", "merge_sort/num.1000.1.out");
-    applyMergeSort("instancias-num/num.1000.2.in", "merge_sort/num.1000.2.out");
-    applyMergeSort("instancias-num/num.1000.3.in", "merge_sort/num.1000.3.out");
-    applyMergeSort("instancias-num/num.1000.4.in", "merge_sort/num.1000.4.out");
-    applyMergeSort("instancias-num/num.10000.1.in", "merge_sort/num.10000.1.out");
-    applyMergeSort("instancias-num/num.10000.2.in", "merge_sort/num.10000.2.out");
-    applyMergeSort("instancias-num/num.10000.3.in", "merge_sort/num.10000.3.out");
-    applyMergeSort("instancias-num/num.10000.4.in", "merge_sort/num.10000.4.out");
-    applyMergeSort("instancias-num/num.100000.1.in", "merge_sort/num.100000.1.out");
-    applyMergeSort("instancias-num/num.100000.2.in", "merge_sort/num.100000.2.out");
-    applyMergeSort("instancias-num/num.100000.3.in", "merge_sort/num.100000.3.out");
-    applyMergeSort("instancias-num/num.100000.4.in", "merge_sort/num.100000.4.out");
+    applyMergeSort((char*) argv[1], (char*) argv[2]);
 
     return 0;
 }

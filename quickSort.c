@@ -40,6 +40,10 @@ void quickSort(int arr[], int l, int r)
     }
 }
 
+// A utility function for applying the quick sort algorithm
+// in a specified input file.
+// inPath -> Path to the input file.
+// outPath -> path to output file.
 void applyQuickSort(char inPath[], char outPath[])
 {
     FILE *ip, *op;
@@ -79,18 +83,7 @@ void applyQuickSort(char inPath[], char outPath[])
 
 int main(int argc, int *argv[])
 {
-    applyQuickSort("instancias-num/num.1000.1.in", "quick_sort/num.1000.1.out");
-    applyQuickSort("instancias-num/num.1000.2.in", "quick_sort/num.1000.2.out");
-    applyQuickSort("instancias-num/num.1000.3.in", "quick_sort/num.1000.3.out");
-    applyQuickSort("instancias-num/num.1000.4.in", "quick_sort/num.1000.4.out");
-    applyQuickSort("instancias-num/num.10000.1.in", "quick_sort/num.10000.1.out");
-    applyQuickSort("instancias-num/num.10000.2.in", "quick_sort/num.10000.2.out");
-    applyQuickSort("instancias-num/num.10000.3.in", "quick_sort/num.10000.3.out");
-    applyQuickSort("instancias-num/num.10000.4.in", "quick_sort/num.10000.4.out");
-    applyQuickSort("instancias-num/num.100000.1.in", "quick_sort/num.100000.1.out");
-    applyQuickSort("instancias-num/num.100000.2.in", "quick_sort/num.100000.2.out");
-    applyQuickSort("instancias-num/num.100000.3.in", "quick_sort/num.100000.3.out");
-    applyQuickSort("instancias-num/num.100000.4.in", "quick_sort/num.100000.4.out");
+    applyQuickSort((char*) argv[1], (char*) argv[2]);
 
     return 0;
 }

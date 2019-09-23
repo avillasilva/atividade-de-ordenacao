@@ -1,4 +1,5 @@
 from math import fabs
+import sys
 
 def find_max(input):
     """
@@ -103,15 +104,18 @@ def ord(file_in, file_out):
     fin.close()
     fout.close()
 
-ord("instancias-num/num.1000.1.in", "counting_sort/1000-1.txt")
-ord("instancias-num/num.1000.2.in", "counting_sort/1000-2.txt")
-ord("instancias-num/num.1000.3.in", "counting_sort/1000-3.txt")
-ord("instancias-num/num.1000.4.in", "counting_sort/1000-4.txt")
-ord("instancias-num/num.10000.1.in", "counting_sort/10000-1.txt")
-ord("instancias-num/num.10000.2.in", "counting_sort/10000-2.txt")
-ord("instancias-num/num.10000.3.in", "counting_sort/10000-3.txt")
-ord("instancias-num/num.10000.4.in", "counting_sort/10000-4.txt")
-ord("instancias-num/num.100000.1.in", "counting_sort/100000-1.txt")
-ord("instancias-num/num.100000.2.in", "counting_sort/100000-2.txt")
-ord("instancias-num/num.100000.3.in", "counting_sort/100000-3.txt")
-ord("instancias-num/num.100000.4.in", "counting_sort/100000-4.txt")
+if __name__ == "__main__":
+    ord(sys.argv[1], sys.argv[2])
+
+# ord("instancias-num/num.1000.1.in", "counting_sort/1000-1.txt")
+# ord("instancias-num/num.1000.2.in", "counting_sort/1000-2.txt")
+# ord("instancias-num/num.1000.3.in", "counting_sort/1000-3.txt")
+# ord("instancias-num/num.1000.4.in", "counting_sort/1000-4.txt")
+# ord("instancias-num/num.10000.1.in", "counting_sort/10000-1.txt")
+# ord("instancias-num/num.10000.2.in", "counting_sort/10000-2.txt")
+# ord("instancias-num/num.10000.3.in", "counting_sort/10000-3.txt")
+# ord("instancias-num/num.10000.4.in", "counting_sort/10000-4.txt")
+# ord("instancias-num/num.100000.1.in", "counting_sort/100000-1.txt")
+# ord("instancias-num/num.100000.2.in", "counting_sort/100000-2.txt")
+# ord("instancias-num/num.100000.3.in", "counting_sort/100000-3.txt")
+# ord("instancias-num/num.100000.4.in", "counting_sort/100000-4.txt")
